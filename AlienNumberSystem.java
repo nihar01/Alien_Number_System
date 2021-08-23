@@ -23,27 +23,30 @@ public class AlienNumberSystem {
             h1.put(i,B.charAt(i));
         }
 
-        // for(Map.Entry<Character,Integer> m : h.entrySet()){    
-        //     System.out.println(m.getKey()+" "+m.getValue());    
-        // }
-
          String s="";
         for(int i=0;i<n.length();i++)
         {
             Character c=n.charAt(i);
            s=s.concat(Integer.toString(h.getOrDefault(c,-1)));              //Converting sring of character to string of integers
         }    
-        System.out.print(s+" before addition");
+    
         System.out.println("");
         String result_num=  sumBaseB(s, "1", base);            // calling function to increment by 1
-        System.out.print(result_num+" after incrementing by 1"+"\n");    //string after incrementing by 1
+       
 
         String result_string="";
 
         for(int i=0;i<result_num.length();i++)
         {
             Integer a=Character.getNumericValue(result_num.charAt(i));
-          result_string=result_string.concat(Character.toString(h1.getOrDefault(a,'?')));   //converting character string back to Integer string
+            Character c=h1.getOrDefault(a,'?');
+
+            if(c=='?')
+            {
+              System.out.println("Please check the input String.All the characters must belong to the Alien number system");
+              break;
+            }
+          result_string=result_string.concat(Character.toString(c));   //converting character string back to Integer string
         }
 
         System.out.print("Next number according to Alien number system ->"+result_string+"\n");   //final string in Alien number system
